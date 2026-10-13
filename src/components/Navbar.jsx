@@ -12,12 +12,7 @@ import {
   ChevronDown,
   Menu,
   X,
-  Ship,
-  Train,
-  FileText,
-  FileSpreadsheet,
-  Search,
-  ExternalLink
+  Ship
 } from 'lucide-react';
 
 export default function Navbar({ 
@@ -39,14 +34,6 @@ export default function Navbar({
     { id: 'containers', label: 'Container / Volumes', shortLabel: 'Containers', icon: Container },
     { id: 'fleet', label: 'Fleet Operations', shortLabel: 'Fleet', icon: Truck },
     { id: 'vessels', label: 'Ocean & Vessel Radar', shortLabel: 'Ocean Hub', icon: Ship, isHighlight: true },
-  ];
-
-  // Quick Action Pills directly inspired by actlindia.com website header
-  const actlPills = [
-    { label: 'Weekly Rake Schedule', icon: Train, onClick: () => setActiveTab('fleet'), badge: 'RAIL' },
-    { label: 'Trade Advisory', icon: FileText, onClick: () => setActiveTab('analytics'), badge: 'LIVE' },
-    { label: 'Container Tracking', icon: Search, onClick: () => setActiveTab('containers'), badge: 'TRACK' },
-    { label: 'ACTL Tariff', icon: FileSpreadsheet, onClick: () => setActiveTab('sales'), badge: '2026-27' },
   ];
 
   const currentItem = navItems.find(item => item.id === activeTab) || navItems[0];
@@ -106,23 +93,6 @@ export default function Navbar({
                 </span>
               </div>
             </div>
-          </div>
-
-          {/* Quick Action Pill Buttons from actlindia.com Header (Visible on XL screens) */}
-          <div className="hidden xl:flex items-center gap-2">
-            {actlPills.map((pill, idx) => {
-              const PillIcon = pill.icon;
-              return (
-                <button
-                  key={idx}
-                  onClick={pill.onClick}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-extrabold bg-[#008DD2]/10 hover:bg-[#008DD2] text-[#008DD2] hover:text-white border border-[#008DD2]/30 transition-all duration-200 active:scale-95 shadow-xs cursor-pointer"
-                >
-                  <PillIcon className="w-3.5 h-3.5 shrink-0" />
-                  <span>{pill.label}</span>
-                </button>
-              );
-            })}
           </div>
 
           {/* 📱 MOBILE: Clean Menu Toggle Button (Screen < lg) */}
@@ -203,26 +173,6 @@ export default function Navbar({
                     </button>
                   </div>
                 )}
-
-                {/* Quick Rake / Tariff Pills in Mobile */}
-                <div className="grid grid-cols-2 gap-2 pt-1">
-                  {actlPills.map((pill, idx) => {
-                    const PillIcon = pill.icon;
-                    return (
-                      <button
-                        key={idx}
-                        onClick={() => {
-                          pill.onClick();
-                          setMobileMenuOpen(false);
-                        }}
-                        className="flex items-center gap-1.5 p-2 rounded-xl text-[11px] font-black bg-sky-50 text-[#008DD2] border border-sky-200 hover:bg-[#008DD2] hover:text-white transition-colors text-left"
-                      >
-                        <PillIcon className="w-3.5 h-3.5 shrink-0" />
-                        <span className="truncate">{pill.label}</span>
-                      </button>
-                    );
-                  })}
-                </div>
 
                 {/* Admin User Management Button in Mobile Menu */}
                 {isAdmin && onOpenUserManagement && (
