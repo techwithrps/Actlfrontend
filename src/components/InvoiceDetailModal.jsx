@@ -202,7 +202,7 @@ export default function InvoiceDetailModal({ record, onClose }) {
         <div className="p-4 border-t border-slate-200 bg-slate-50 flex items-center justify-between text-xs">
           <div className="text-slate-600 font-medium flex items-center gap-1.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-            Oracle Verified SPJLIVE Bill & Container Item Record
+            Oracle Verified ACTL LIVE Bill & Container Item Record
           </div>
           <button
             onClick={onClose}

@@ -604,7 +604,7 @@ export default function App() {
                 <h4 className="text-xs sm:text-sm font-bold text-amber-900 flex items-center gap-2">
                   <span>Offline Snapshot Mode</span>
                   <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-200/80 text-amber-900 font-extrabold border border-amber-300">
-                    UNABLE TO REACH LIVE ORACLE SPJLIVE
+                    UNABLE TO REACH LIVE ORACLE ACTL LIVE
                   </span>
                 </h4>
                 <p className="text-[11px] text-amber-800 mt-0.5">

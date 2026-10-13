@@ -796,7 +796,7 @@ export default function GlobalFilterBar({
           <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] text-slate-500 font-mono">
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
             <span>Oracle Live</span>
-            <span className="font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">SPJLIVE</span>
+            <span className="font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">ACTL LIVE</span>
           </div>
         )}
 
