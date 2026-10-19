@@ -113,34 +113,34 @@ export default function LoginPage({ onLoginSuccess }) {
 
         {/* Middle Value Proposition Hero Content */}
         <div className="relative z-10 max-w-xl my-auto py-4 sm:py-8 space-y-2.5 sm:space-y-5">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1 rounded-lg sm:rounded-xl bg-orange-500/20 border border-orange-500/30 text-[#ff8a3d] text-[10px] sm:text-[11px] font-black tracking-wide uppercase">
-            <TrendingUp className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-            Intelligence & Revenue Dashboard
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1 rounded-lg sm:rounded-xl bg-red-500/20 border border-red-500/30 text-red-300 text-[10px] sm:text-[11px] font-black tracking-wide uppercase">
+            <TrendingUp className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#D8232A]" />
+            ACTL Enterprise Intelligence & Cargo Invoicing
           </div>
 
           <h1 className="text-xl sm:text-3xl lg:text-5xl font-black font-display text-white tracking-tight leading-tight">
-            Global Logistics & Real-time Yard Movement
+            Inland Container Depot & Multimodal CFS Analytics
           </h1>
 
           <p className="text-xs sm:text-sm lg:text-base text-slate-300 font-normal leading-relaxed">
-            Live multimodal container operations, freight invoicing analytics, and fleet intelligence across 39 terminals nationwide.
+            Live multimodal container operations, freight invoicing analytics, and yard movement intelligence across 42 operating hubs.
           </p>
 
           {/* Quick Metrics Grid */}
           <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-1 sm:pt-3">
             <div className="p-2 sm:p-3.5 rounded-xl sm:rounded-2xl bg-white/10 backdrop-blur-md border border-white/10">
-              <div className="text-sm sm:text-2xl font-black text-white font-display">89,249</div>
-              <div className="text-[9px] sm:text-[11px] font-medium text-slate-300">Active Units</div>
+              <div className="text-sm sm:text-2xl font-black text-white font-display">36,000+</div>
+              <div className="text-[9px] sm:text-[11px] font-medium text-slate-300">Containers Handled</div>
             </div>
 
             <div className="p-2 sm:p-3.5 rounded-xl sm:rounded-2xl bg-white/10 backdrop-blur-md border border-white/10">
-              <div className="text-sm sm:text-2xl font-black text-white font-display">₹ 7,423 Cr</div>
-              <div className="text-[8px] sm:text-[11px] font-medium text-slate-300">Sales Tracked</div>
+              <div className="text-sm sm:text-2xl font-black text-white font-display">₹ 350+ Cr</div>
+              <div className="text-[8px] sm:text-[11px] font-medium text-slate-300">Turnover Audited</div>
             </div>
 
             <div className="p-2 sm:p-3.5 rounded-xl sm:rounded-2xl bg-white/10 backdrop-blur-md border border-white/10">
-              <div className="text-sm sm:text-2xl font-black text-white font-display">39</div>
-              <div className="text-[9px] sm:text-[11px] font-medium text-slate-300">Terminals</div>
+              <div className="text-sm sm:text-2xl font-black text-white font-display">42</div>
+              <div className="text-[9px] sm:text-[11px] font-medium text-slate-300">Operating Hubs</div>
             </div>
           </div>
         </div>
