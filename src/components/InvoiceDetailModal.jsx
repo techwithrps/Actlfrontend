@@ -152,7 +152,7 @@ export default function InvoiceDetailModal({ record, onClose }) {
                 <Receipt className="w-3.5 h-3.5" /> Oracle GST Tax & Billing Ledger
               </span>
               <span className="text-[10px] text-slate-400 font-mono font-normal">
-                Billed By: {record.CREATED_BY || 'SPJ_ORACLE'}
+                Billed By: {record.CREATED_BY || 'ACTL_ORACLE'}
               </span>
             </div>
 

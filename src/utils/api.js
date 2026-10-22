@@ -1,5 +1,5 @@
 /**
- * SPJ Logistics API Layer
+ * ACTL Logistics API Layer
  * 100% Direct Live Oracle Database Integration via Render Backend.
  * Zero static JSON mock files. Zero offline fallbacks.
  */
@@ -10,7 +10,7 @@ export const BACKEND_BASE = (typeof import.meta !== 'undefined' && import.meta.e
 
 export function getAuthToken() {
   try {
-    return localStorage.getItem('spj_auth_token') || null;
+    return (localStorage.getItem('actl_auth_token') || localStorage.getItem('spj_auth_token')) || null;
   } catch {
     return null;
   }
@@ -18,7 +18,7 @@ export function getAuthToken() {
 
 /**
  * Pure Live Authenticated Fetch
- * Directly calls Render backend -> Oracle SPJLIVE database.
+ * Directly calls Render backend -> Oracle ACTL database.
  * Requires user to be authenticated. Never embeds plain-text master credentials.
  */
 export async function authFetch(url, options = {}) {
@@ -47,8 +47,8 @@ export async function authFetch(url, options = {}) {
       // If 401 unauthorized, session has expired or is invalid
       if (res.status === 401) {
         try {
-          localStorage.removeItem('spj_auth_token');
-          localStorage.removeItem('spj_auth_user');
+          localStorage.removeItem('actl_auth_token'); localStorage.removeItem('spj_auth_token');
+          localStorage.removeItem('actl_auth_user'); localStorage.removeItem('spj_auth_user');
         } catch {}
         return res;
       }
@@ -67,7 +67,7 @@ export async function authFetch(url, options = {}) {
         await new Promise(r => setTimeout(r, 150 * (attempt + 1)));
         continue;
       }
-      console.error(`[SPJ API] Network error communicating with ${targetUrl}:`, err.message);
+      console.error(`[ACTL API] Network error communicating with ${targetUrl}:`, err.message);
       return new Response(JSON.stringify({
         success: false,
         error: `Live backend communication error: ${err.message}`,

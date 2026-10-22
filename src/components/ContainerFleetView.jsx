@@ -132,8 +132,8 @@ export default function ContainerFleetView({
   const handleExport = () => {
     const ws = XLSX.utils.json_to_sheet(paginatedContainers);
     const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'SPJ_Containers_Fleet');
-    XLSX.writeFile(wb, 'SPJ_Containers_Yard_Report.xlsx');
+    XLSX.utils.book_append_sheet(wb, ws, 'ACTL_Containers_Fleet');
+    XLSX.writeFile(wb, 'ACTL_Containers_Yard_Report.xlsx');
   };
 
   return (

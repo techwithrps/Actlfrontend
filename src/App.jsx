@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { Globe2, Ship, Truck, Users, AlertTriangle, RefreshCw } from 'lucide-react';
+import { Globe2, Ship, Truck, Users, AlertTriangle, RefreshCw, Container, Receipt } from 'lucide-react';
 import Navbar from './components/Navbar';
 import GlobalFilterBar from './components/GlobalFilterBar';
 import FilterBar from './components/FilterBar';
@@ -112,12 +112,36 @@ function getCanonicalFY(fy) {
   return s;
 }
 
+
+function UnderDevelopmentView({ title, icon: Icon }) {
+  return (
+    <div className="bg-white border border-slate-200/90 rounded-3xl p-8 sm:p-16 text-center shadow-sm max-w-2xl mx-auto my-8 animate-fade-in">
+      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-red-50 border border-red-100 text-[#D8232A] flex items-center justify-center mx-auto mb-6 shadow-sm">
+        <Icon className="w-10 h-10 sm:w-12 sm:h-12 text-[#D8232A] animate-pulse" />
+      </div>
+      <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold uppercase tracking-wider mb-4">
+        <span className="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+        Under Development
+      </div>
+      <h2 className="text-2xl sm:text-3xl font-black text-slate-900 font-display mb-3">
+        {title}
+      </h2>
+      <p className="text-slate-600 text-sm sm:text-base font-semibold max-w-md mx-auto leading-relaxed mb-6">
+        Working on it, page is not live.
+      </p>
+      <div className="inline-flex items-center gap-2 text-[11px] font-extrabold text-slate-400 bg-slate-50 px-4 py-2 rounded-xl border border-slate-200/60 uppercase tracking-wider">
+        ACTL Multimodal Cloud • ICD Faridabad
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   // Authentication State
   const [authToken, setAuthToken] = useState(() => getAuthToken() || null);
   const [currentUser, setCurrentUser] = useState(() => {
     try {
-      const saved = localStorage.getItem('spj_auth_user');
+      const saved = (localStorage.getItem('actl_auth_user') || localStorage.getItem('spj_auth_user'));
       return saved ? JSON.parse(saved) : null;
     } catch {
       return null;
@@ -126,8 +150,8 @@ export default function App() {
 
   const handleLogout = () => {
     try {
-      localStorage.removeItem('spj_auth_user');
-      localStorage.removeItem('spj_auth_token');
+      localStorage.removeItem('actl_auth_user'); localStorage.removeItem('spj_auth_user');
+      localStorage.removeItem('actl_auth_token'); localStorage.removeItem('spj_auth_token');
     } catch (e) {
       console.error(e);
     }
@@ -151,7 +175,7 @@ export default function App() {
   const [selectedCompany, setSelectedCompany] = useState('ALL');
   const [selectedCustomer, setSelectedCustomer] = useState(() => {
     try {
-      const saved = localStorage.getItem('spj_auth_user');
+      const saved = (localStorage.getItem('actl_auth_user') || localStorage.getItem('spj_auth_user'));
       const u = saved ? JSON.parse(saved) : null;
       if (u?.tenantScope?.type === 'CUSTOMER') {
         return u.tenantScope.customerName || u.tenantScope.customerId;
@@ -161,7 +185,7 @@ export default function App() {
   });
   const [selectedTerminal, setSelectedTerminal] = useState(() => {
     try {
-      const saved = localStorage.getItem('spj_auth_user');
+      const saved = (localStorage.getItem('actl_auth_user') || localStorage.getItem('spj_auth_user'));
       const u = saved ? JSON.parse(saved) : null;
       if (u?.tenantScope?.type === 'TERMINAL') {
         return u.tenantScope.terminalId;
@@ -310,7 +334,7 @@ export default function App() {
       const cirUrl = `/api/cir-report?${cirParams.toString()}`;
 
       if (process.env.NODE_ENV !== 'production') {
-        console.log(`[SPJ Frontend Sync #${currentReqId}] Requesting APIs with params:`, queryParams.toString());
+        console.log(`[ACTL Frontend Sync #${currentReqId}] Requesting APIs with params:`, queryParams.toString());
       }
 
       const isSalesTab = (activeTab === 'sales');
@@ -623,7 +647,7 @@ export default function App() {
         )}
 
         {/* Master Global Filter Bar (Company, Customer, Terminal & FY Filter) across analytics, sales, containers, fleet tabs (Hidden on Ocean Hub) */}
-        {activeTab !== 'vessels' && (
+        {false && (
           <div className="animate-slide-up">
             <GlobalFilterBar
               selectedCompany={selectedCompany}
@@ -682,7 +706,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* 4 Stat Badges matching spjcargo.com */}
+            {/* 4 Stat Badges matching ACTL */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 w-full lg:w-auto">
               <div className="flex items-center gap-2 sm:gap-3 px-2.5 py-2 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl bg-white/10 hover:bg-white/15 border border-white/15 hover-lift transition-all">
                 <Globe2 className="w-4 h-4 sm:w-5 sm:h-5 text-blue-300 shrink-0" />
@@ -753,109 +777,28 @@ export default function App() {
 
             {/* Tab 2: Total Sales */}
             {activeTab === 'sales' && (
-              <div className="space-y-6 animate-fade-in">
-                
-                {/* 9 Verified Sales & Operations KPI Cards (Full Width) */}
-                <KPICards kpis={activeSalesKPIs} loading={finLoading} />
-
-                {/* Dual Executive Leaderboards (Left: Top Branches, Right: Top Customers) */}
-                <DualSalesLeaderboard
-                  displayTerminals={activeSalesTerminals}
-                  topCustomers={activeSalesCustomers}
-                  totalGross={activeSalesKPIs.grossRevenue || activeSalesKPIs.totalGrossAmount}
-                  selectedTerminal={selectedTerminal}
-                  onSelectTerminal={handleSetSelectedTerminal}
-                  selectedCustomer={selectedCustomer}
-                  onSelectCustomer={handleSetSelectedCustomer}
-                />
-
-                <FilterBar
-                  filters={filters}
-                  setFilters={setFilters}
-                  masters={{
-                    ...(masters || {}),
-                    terminals: allTerminals.length > 0 ? allTerminals : (masters?.terminals || [])
-                  }}
-                  records={records}
-                  selectedCompany={selectedCompany}
-                  companyCustomers={masters?.companyCustomers || {}}
-                  customerTerminalMatrix={masters?.customerTerminalMatrix || []}
-                  selectedTerminal={selectedTerminal}
-                  setSelectedTerminal={handleSetSelectedTerminal}
-                  selectedFY={selectedFY}
-                  setSelectedFY={setSelectedFY}
-                  customFromDate={customFromDate}
-                  setCustomFromDate={setCustomFromDate}
-                  customToDate={customToDate}
-                  setCustomToDate={setCustomToDate}
-                  financialYears={financialYears}
-                  onReset={handleResetFilters}
-                  onExport={handleExportExcel}
-                  loading={loading}
-                  totalRecords={activeSalesKPIs.totalRecords || activeSalesKPIs.invoiceCount || kpis.totalRecords || cirPagination.totalRecords || records.length}
-                />
-
-                <CIRTable
-                  records={records}
-                  loading={loading}
-                  onSelectRecord={setSelectedRecord}
-                  kpis={activeSalesKPIs}
-                  page={cirPage}
-                  pageSize={cirLimit}
-                  totalRecords={activeSalesKPIs.totalRecords || activeSalesKPIs.invoiceCount || kpis.totalRecords || cirPagination.totalRecords || records.length}
-                  totalPages={Math.ceil((activeSalesKPIs.totalRecords || activeSalesKPIs.invoiceCount || cirPagination.totalRecords || 1) / cirLimit)}
-                  onPageChange={setCirPage}
-                  onPageSizeChange={(newLimit) => {
-                    setCirLimit(newLimit);
-                    setCirPage(1);
-                  }}
-                />
-              </div>
+              <UnderDevelopmentView title="Total Sales" icon={Receipt} />
             )}
 
             {/* Tab 3: Container / Volumes */}
             {activeTab === 'containers' && (
-              <div className="space-y-6 animate-fade-in">
-                <ContainerFleetView
-                  selectedCompany={selectedCompany}
-                  selectedCustomer={selectedCustomer}
-                  selectedTerminal={selectedTerminal}
-                  setSelectedTerminal={handleSetSelectedTerminal}
-                  selectedFY={selectedFY}
-                  setSelectedFY={setSelectedFY}
-                  customFromDate={customFromDate}
-                  customToDate={customToDate}
-                  terminals={allTerminals.length > 0 ? allTerminals : (masters?.terminals || [])}
-                  financialYears={financialYears}
-                />
-              </div>
+              <UnderDevelopmentView title="Container / Volumes" icon={Container} />
             )}
 
-            {/* Tab 4: Fleet */}
+            {/* Tab 4: Fleet Operations */}
             {activeTab === 'fleet' && (
-              <div className="space-y-6 animate-fade-in">
-                <FleetView
-                  selectedTerminal={selectedTerminal}
-                  setSelectedTerminal={handleSetSelectedTerminal}
-                  selectedFY={selectedFY}
-                  setSelectedFY={setSelectedFY}
-                  terminals={allTerminals.length > 0 ? allTerminals : (masters?.terminals || [])}
-                  financialYears={financialYears}
-                />
-              </div>
+              <UnderDevelopmentView title="Fleet Operations" icon={Truck} />
             )}
 
-            {/* Tab 5: Ocean & Vessel Intelligence Hub */}
+            {/* Tab 5: Ocean & Vessel Radar */}
             {activeTab === 'vessels' && (
-              <div className="space-y-6 animate-fade-in">
-                <OceanIntelligenceView />
-              </div>
+              <UnderDevelopmentView title="Ocean & Vessel Radar" icon={Ship} />
             )}
           </React.Suspense>
         </ErrorBoundary>
 
         {/* STEP 12: TEMPORARY DEV DEBUG INSPECTION PANEL (Hidden on Ocean Hub) */}
-        {activeTab !== 'vessels' && (
+        {false && (
           <div className="mt-8 border border-slate-300 bg-slate-900 text-slate-100 rounded-2xl p-4 text-xs font-mono shadow-xl">
             <div className="flex items-center justify-between border-b border-slate-700 pb-2 mb-3">
               <div className="flex items-center gap-2">
@@ -934,7 +877,7 @@ export default function App() {
       <footer className="border-t border-slate-200 py-6 bg-white text-center text-xs text-slate-500 mt-12">
         <div className="max-w-[1700px] mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <img src="/logo.png" alt="SPJ Logo" className="h-6 w-auto object-contain" />
+            <img src="/logo.png" alt="ACTL Logo" className="h-6 w-auto object-contain" />
             <span>© {new Date().getFullYear()} <strong>ACTL - Associated Container Terminals Ltd</strong> — All Rights Reserved.</span>
           </div>
           <div className="flex items-center gap-4 text-xs font-semibold text-slate-600">

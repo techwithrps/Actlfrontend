@@ -92,14 +92,14 @@ export default function GlobalFilterBar({
     if (setCustomToDate) setCustomToDate('');
   };
 
-  // Dynamic Company List: 5 Official SPJ Group Companies with revenue stats dynamically matched to active scope
+  // Dynamic Company List: 5 Official ACTL Group Entities with revenue stats dynamically matched to active scope
   const companyList = useMemo(() => {
     const base = (companies && companies.length > 0) ? companies : [
       { id: 3, companyId: 3, code: 'PJ-OLD', name: 'PURAN JOSHI OLD', gstin: '07ADGPJ3166M1ZA', director: 'Mr. Puran Joshi' },
-      { id: 2, companyId: 2, code: 'SPJ', name: 'SPJ CARGO PVT LTD', gstin: '07AAOCS1758E1Z5', director: 'Mr. Puran Joshi' },
+      { id: 2, companyId: 2, code: 'ACTL', name: 'ASSOCIATED CONTAINER TERMINALS LTD', gstin: '07AAOCS1758E1Z5', director: 'Mr. Puran Joshi' },
       { id: 1, companyId: 1, code: 'SJ', name: 'S.J. CARGO MOVERS', gstin: '07ADGPJ3166M1ZA', director: 'Mr. Puran Joshi' },
       { id: 5, companyId: 5, code: 'PJ', name: 'PURAN JOSHI', gstin: '07ADGPJ3166M2Z9', director: 'Mr. Puran Joshi' },
-      { id: 4, companyId: 4, code: 'SPJ-MUM', name: 'SPJ CARGO PVT LTD-MUMBAI', gstin: '27AAOCS1758E1Z3', director: 'Mr. Puran Joshi' }
+      { id: 4, companyId: 4, code: 'ACTL-MUM', name: 'ACTL LOGISTICS-MUMBAI', gstin: '27AAOCS1758E1Z3', director: 'Mr. Puran Joshi' }
     ];
 
     const activeTerms = financialData?.terminalAnalytics || [];
@@ -469,7 +469,7 @@ export default function GlobalFilterBar({
     }));
     const ws = XLSX.utils.json_to_sheet(dataToExport);
     XLSX.utils.book_append_sheet(wb, ws, 'Branch_Overview');
-    XLSX.writeFile(wb, `SPJ_Enterprise_Overview_${selectedFY.replace(/\s+/g, '_')}_${new Date().toISOString().slice(0, 10)}.xlsx`);
+    XLSX.writeFile(wb, `ACTL_Enterprise_Overview_${selectedFY.replace(/\s+/g, '_')}_${new Date().toISOString().slice(0, 10)}.xlsx`);
   };
 
   return (

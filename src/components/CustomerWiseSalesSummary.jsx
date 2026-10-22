@@ -151,7 +151,7 @@ export default function CustomerWiseSalesSummary({
                             {c.terminalCount || (c.terminals ? c.terminals.length : 1)} Hubs
                           </span>
                           <span className="text-[11px] text-slate-600 line-clamp-1 max-w-[220px]" title={(c.terminals || []).join(', ')}>
-                            {(c.terminals && c.terminals.length > 0) ? c.terminals.slice(0, 3).join(', ') : 'SPJ Live'}
+                            {(c.terminals && c.terminals.length > 0) ? c.terminals.slice(0, 3).join(', ') : 'ACTL Live'}
                             {c.terminals && c.terminals.length > 3 ? ` +${c.terminals.length - 3} more` : ''}
                           </span>
                         </div>

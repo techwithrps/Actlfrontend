@@ -46,10 +46,10 @@ export function computeFinancialAnalytics(filters = {}) {
   const serviceMap = {};
   const monthMap = {};
   const companyMap = {
-    '2': { id: 2, companyId: 2, name: 'SPJ CARGO PVT LTD', code: 'SPJ', grossRevenue: 0, invoiceCount: 0, containerCount: 0 },
+    '2': { id: 2, companyId: 2, name: 'ASSOCIATED CONTAINER TERMINALS LTD', code: 'ACTL', grossRevenue: 0, invoiceCount: 0, containerCount: 0 },
     '1': { id: 1, companyId: 1, name: 'S.J. CARGO MOVERS', code: 'SJ', grossRevenue: 0, invoiceCount: 0, containerCount: 0 },
     '5': { id: 5, companyId: 5, name: 'PURAN JOSHI', code: 'PJ', grossRevenue: 0, invoiceCount: 0, containerCount: 0 },
-    '4': { id: 4, companyId: 4, name: 'SPJ CARGO PVT LTD-MUMBAI', code: 'SPJ-MUM', grossRevenue: 0, invoiceCount: 0, containerCount: 0 },
+    '4': { id: 4, companyId: 4, name: 'ACTL LOGISTICS-MUMBAI', code: 'ACTL-MUM', grossRevenue: 0, invoiceCount: 0, containerCount: 0 },
     '3': { id: 3, companyId: 3, name: 'PURAN JOSHI OLD', code: 'PJ-OLD', grossRevenue: 0, invoiceCount: 0, containerCount: 0 },
   };
 
@@ -269,7 +269,7 @@ export function computeFinancialAnalytics(filters = {}) {
   });
 
   const payload = {
-    source: 'ORACLE_SPJLIVE_STANDALONE_ENGINE',
+    source: 'ORACLE_ACTL_STANDALONE_ENGINE',
     executionMode: 'CLIENT_HIGH_SPEED_ENGINE',
     matchedRows: totalInvs,
     matchedRowCount: totalInvs,
@@ -404,10 +404,10 @@ export function getClientMasters() {
   const terminalList = Object.values(terminals).sort((a, b) => a.terminalName.localeCompare(b.terminalName));
   const customerList = Object.values(customers).sort((a, b) => a.customerName.localeCompare(b.customerName));
   const companyList = [
-    { id: 2, companyId: 2, name: 'SPJ CARGO PVT LTD', code: 'SPJ', gstin: '07AAOCS1758E1Z5', director: 'Mr. Puran Joshi' },
+    { id: 2, companyId: 2, name: 'ASSOCIATED CONTAINER TERMINALS LTD', code: 'ACTL', gstin: '07AAOCS1758E1Z5', director: 'Mr. Puran Joshi' },
     { id: 1, companyId: 1, name: 'S.J. CARGO MOVERS', code: 'SJ', gstin: '07ADGPJ3166M1ZA', director: 'Mr. Puran Joshi' },
     { id: 5, companyId: 5, name: 'PURAN JOSHI', code: 'PJ', gstin: '07ADGPJ3166M2Z9', director: 'Mr. Puran Joshi' },
-    { id: 4, companyId: 4, name: 'SPJ CARGO PVT LTD-MUMBAI', code: 'SPJ-MUM', gstin: '27AAOCS1758E1Z3', director: 'Mr. Puran Joshi' },
+    { id: 4, companyId: 4, name: 'ACTL LOGISTICS-MUMBAI', code: 'ACTL-MUM', gstin: '27AAOCS1758E1Z3', director: 'Mr. Puran Joshi' },
     { id: 3, companyId: 3, name: 'PURAN JOSHI OLD', code: 'PJ-OLD', gstin: '07ADGPJ3166M1ZA', director: 'Mr. Puran Joshi' },
   ];
 

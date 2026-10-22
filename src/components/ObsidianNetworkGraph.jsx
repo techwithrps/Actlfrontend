@@ -53,9 +53,9 @@ const THEMES = {
 };
 
 const COMPANY_COLORS = {
-  'SPJ': { stroke: '#4338ca', fill: '#2b1f55', glow: 'rgba(67, 56, 202, 0.35)' },
+  'ACTL': { stroke: '#4338ca', fill: '#2b1f55', glow: 'rgba(67, 56, 202, 0.35)' },
   'SJ': { stroke: '#0284c7', fill: '#0369a1', glow: 'rgba(2, 132, 199, 0.35)' },
-  'SPJ-MUM': { stroke: '#db2777', fill: '#9d174d', glow: 'rgba(219, 39, 119, 0.35)' },
+  'ACTL-MUM': { stroke: '#db2777', fill: '#9d174d', glow: 'rgba(219, 39, 119, 0.35)' },
   'PJ': { stroke: '#d97706', fill: '#b45309', glow: 'rgba(217, 119, 6, 0.35)' },
   'PJ-OLD': { stroke: '#7c3aed', fill: '#5b21b6', glow: 'rgba(124, 58, 237, 0.35)' }
 };
@@ -100,9 +100,9 @@ export default function ObsidianNetworkGraph({
   const normalizedCompanyCode = useMemo(() => {
     if (!selectedCompany || selectedCompany === 'ALL' || selectedCompany === 'all') return null;
     const s = String(selectedCompany).toUpperCase().trim();
-    if (s === '2' || s === 'SPJ') return 'SPJ';
+    if (s === '2' || s === 'ACTL' || s === 'SPJ') return 'ACTL';
     if (s === '1' || s === 'SJ') return 'SJ';
-    if (s === '4' || s === 'SPJ-MUM' || s.includes('MUM')) return 'SPJ-MUM';
+    if (s === '4' || s === 'ACTL-MUM' || s === 'SPJ-MUM' || s.includes('MUM')) return 'ACTL-MUM';
     if (s === '5' || s === 'PJ') return 'PJ';
     if (s === '3' || s === 'PJ-OLD') return 'PJ-OLD';
     return s;
@@ -126,9 +126,9 @@ export default function ObsidianNetworkGraph({
 
     // 1.1 Five Wide-Spaced Company Hubs
     const companyDefs = [
-      { id: '2', code: 'SPJ', name: 'SPJ CARGO PVT LTD', sales: 32948600000, invs: 142739, x: 0, y: -20 },
+      { id: '2', code: 'ACTL', name: 'ASSOCIATED CONTAINER TERMINALS LTD', sales: 32948600000, invs: 142739, x: 0, y: -20 },
       { id: '1', code: 'SJ', name: 'S.J. CARGO MOVERS', sales: 1688500000, invs: 26719, x: 380, y: -180 },
-      { id: '4', code: 'SPJ-MUM', name: 'SPJ CARGO (MUMBAI)', sales: 3650000000, invs: 15200, x: 320, y: 240 },
+      { id: '4', code: 'ACTL-MUM', name: 'ACTL LOGISTICS (MUMBAI)', sales: 3650000000, invs: 15200, x: 320, y: 240 },
       { id: '5', code: 'PJ', name: 'POORAN JI 1986', sales: 188700000, invs: 255, x: -340, y: -220 },
       { id: '3', code: 'PJ-OLD', name: 'POORAN JI (OLD)', sales: 60563736, invs: 72, x: -380, y: 180 }
     ];
@@ -156,15 +156,15 @@ export default function ObsidianNetworkGraph({
 
     // 1.2 Customer Seeds Distributed in generous rings around parent companies
     const customerSeeds = [
-      // SPJ Customers (Orbit radius ~140px - 170px)
-      { name: 'FAIR EXPORTS (INDIA) PVT LTD', comp: 'SPJ', sales: 2736623889.97, invs: 20460, terms: ['DADRI', 'JNPT', 'MUNDRA'], dist: 140, angle: 0.1 },
-      { name: 'IFF INDIA FROZEN FOODS', comp: 'SPJ', sales: 2504888713.08, invs: 14761, terms: ['DADRI', 'KANPUR'], dist: 165, angle: 0.9 },
-      { name: 'MARHABA FROZEN FOODS', comp: 'SPJ', sales: 1874476297.09, invs: 10098, terms: ['DADRI', 'MUNDRA'], dist: 145, angle: 1.7 },
-      { name: 'RUSTAM FOODS PVT.LTD.', comp: 'SPJ', sales: 1854931176.52, invs: 8974, terms: ['KANPUR', 'DADRI'], dist: 170, angle: 2.5 },
-      { name: 'AL AMMAR FROZEN FOOD EXPORTS', comp: 'SPJ', sales: 1766522371.32, invs: 9895, terms: ['DADRI', 'JNPT'], dist: 140, angle: 3.3 },
-      { name: 'AL-NASIR EXPORTS PVT LTD', comp: 'SPJ', sales: 1538360294.34, invs: 11203, terms: ['DADRI', 'KANPUR'], dist: 160, angle: 4.1 },
-      { name: 'MIRHA EXPORTS PVT. LTD.', comp: 'SPJ', sales: 1195561318.42, invs: 7925, terms: ['LUDHIANA', 'MUNDRA'], dist: 150, angle: 4.9 },
-      { name: 'AL SAMEER EXPORTS PVT LTD', comp: 'SPJ', sales: 702739198.00, invs: 4461, terms: ['DADRI', 'MUNDRA'], dist: 140, angle: 5.7 },
+      // ACTL Customers (Orbit radius ~140px - 170px)
+      { name: 'FAIR EXPORTS (INDIA) PVT LTD', comp: 'ACTL', sales: 2736623889.97, invs: 20460, terms: ['DADRI', 'JNPT', 'MUNDRA'], dist: 140, angle: 0.1 },
+      { name: 'IFF INDIA FROZEN FOODS', comp: 'ACTL', sales: 2504888713.08, invs: 14761, terms: ['DADRI', 'KANPUR'], dist: 165, angle: 0.9 },
+      { name: 'MARHABA FROZEN FOODS', comp: 'ACTL', sales: 1874476297.09, invs: 10098, terms: ['DADRI', 'MUNDRA'], dist: 145, angle: 1.7 },
+      { name: 'RUSTAM FOODS PVT.LTD.', comp: 'ACTL', sales: 1854931176.52, invs: 8974, terms: ['KANPUR', 'DADRI'], dist: 170, angle: 2.5 },
+      { name: 'AL AMMAR FROZEN FOOD EXPORTS', comp: 'ACTL', sales: 1766522371.32, invs: 9895, terms: ['DADRI', 'JNPT'], dist: 140, angle: 3.3 },
+      { name: 'AL-NASIR EXPORTS PVT LTD', comp: 'ACTL', sales: 1538360294.34, invs: 11203, terms: ['DADRI', 'KANPUR'], dist: 160, angle: 4.1 },
+      { name: 'MIRHA EXPORTS PVT. LTD.', comp: 'ACTL', sales: 1195561318.42, invs: 7925, terms: ['LUDHIANA', 'MUNDRA'], dist: 150, angle: 4.9 },
+      { name: 'AL SAMEER EXPORTS PVT LTD', comp: 'ACTL', sales: 702739198.00, invs: 4461, terms: ['DADRI', 'MUNDRA'], dist: 140, angle: 5.7 },
 
       // SJ Customers
       { name: 'HMA AGRO INDUSTRIES LTD', comp: 'SJ', sales: 1742178313.34, invs: 8608, terms: ['DADRI', 'AGRA', 'MUNDRA'], dist: 135, angle: 0.4 },
@@ -173,11 +173,11 @@ export default function ObsidianNetworkGraph({
       { name: 'MASH AGRO FOODS LTD', comp: 'SJ', sales: 963898358.91, invs: 4026, terms: ['KANPUR', 'DADRI'], dist: 160, angle: 4.3 },
       { name: 'ALM INDUSTRIES LIMITED', comp: 'SJ', sales: 352007379.62, invs: 2888, terms: ['DADRI', 'KANPUR'], dist: 135, angle: 5.5 },
 
-      // SPJ-MUM Customers
-      { name: 'JH LOGISTICS PRIVATE LIMITED', comp: 'SPJ-MUM', sales: 1450731383.16, invs: 11286, terms: ['JNPT', 'MUMBAI', 'MUNDRA'], dist: 140, angle: 0.7 },
-      { name: 'TOURO PRIMEIRO PRIVATE LIMITED', comp: 'SPJ-MUM', sales: 486794013.67, invs: 3876, terms: ['JNPT', 'MUNDRA'], dist: 160, angle: 2.2 },
-      { name: 'SOHAM EXIM', comp: 'SPJ-MUM', sales: 138458824.43, invs: 1630, terms: ['JNPT', 'MUNDRA'], dist: 140, angle: 3.7 },
-      { name: 'KESHODWALA FOODS', comp: 'SPJ-MUM', sales: 133737747.42, invs: 509, terms: ['MUNDRA', 'JNPT'], dist: 155, angle: 5.2 },
+      // ACTL-MUM Customers
+      { name: 'JH LOGISTICS PRIVATE LIMITED', comp: 'ACTL-MUM', sales: 1450731383.16, invs: 11286, terms: ['JNPT', 'MUMBAI', 'MUNDRA'], dist: 140, angle: 0.7 },
+      { name: 'TOURO PRIMEIRO PRIVATE LIMITED', comp: 'ACTL-MUM', sales: 486794013.67, invs: 3876, terms: ['JNPT', 'MUNDRA'], dist: 160, angle: 2.2 },
+      { name: 'SOHAM EXIM', comp: 'ACTL-MUM', sales: 138458824.43, invs: 1630, terms: ['JNPT', 'MUNDRA'], dist: 140, angle: 3.7 },
+      { name: 'KESHODWALA FOODS', comp: 'ACTL-MUM', sales: 133737747.42, invs: 509, terms: ['MUNDRA', 'JNPT'], dist: 155, angle: 5.2 },
 
       // PJ Customers
       { name: 'RAYBAN FROZEN FOODS', comp: 'PJ', sales: 232503662.43, invs: 1609, terms: ['DADRI', 'PIYALA'], dist: 130, angle: 1.2 },

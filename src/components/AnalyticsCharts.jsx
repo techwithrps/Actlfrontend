@@ -81,10 +81,10 @@ export default function AnalyticsCharts({
     if (!selectedCompany || selectedCompany === 'ALL' || selectedCompany === 'all') return null;
     const s = String(selectedCompany).toUpperCase().trim();
     if (s === '3' || s === 'PJ-OLD' || s.includes('OLD')) return '3';
-    if (s === '2' || s === 'SPJ') return '2';
+    if (s === '2' || s === 'ACTL' || s === 'SPJ') return '2';
     if (s === '1' || s === 'SJ') return '1';
     if (s === '5' || s === 'PJ') return '5';
-    if (s === '4' || s === 'SPJ-MUM' || s.includes('MUM')) return '4';
+    if (s === '4' || s === 'ACTL-MUM' || s === 'SPJ-MUM' || s.includes('MUM')) return '4';
     return String(selectedCompany);
   }, [selectedCompany]);
 
@@ -92,10 +92,10 @@ export default function AnalyticsCharts({
     if (!activeCompId) return null;
     const names = {
       '3': 'PURAN JOSHI OLD',
-      '2': 'SPJ CARGO PVT LTD',
+      '2': 'ACTL LOGISTICS PVT LTD',
       '1': 'S.J. CARGO MOVERS',
       '5': 'PURAN JOSHI',
-      '4': 'SPJ CARGO PVT LTD-MUMBAI'
+      '4': 'ACTL LOGISTICS-MUMBAI'
     };
     return names[activeCompId] || selectedCompany;
   }, [activeCompId, selectedCompany]);
@@ -430,7 +430,7 @@ export default function AnalyticsCharts({
     })));
     XLSX.utils.book_append_sheet(wb, wsTerminals, 'Branch_Performance');
 
-    XLSX.writeFile(wb, `SPJ_Branch_Analytics_${selectedFY || 'ALL'}.xlsx`);
+    XLSX.writeFile(wb, `ACTL_Branch_Analytics_${selectedFY || 'ALL'}.xlsx`);
   };
 
   const SortIcon = ({ field }) => {

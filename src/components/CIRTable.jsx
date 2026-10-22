@@ -179,7 +179,7 @@ export default function CIRTable({
                   <div className="min-w-0">
                     <span className="text-[9px] font-bold text-slate-400 uppercase block truncate">Party / Customer</span>
                     <span className="font-bold text-slate-900 truncate block" title={row.CUSTOMER_NAME}>
-                      {row.CUSTOMER_NAME || 'SPJ Account Party'}
+                      {row.CUSTOMER_NAME || 'ACTL Account Party'}
                     </span>
                   </div>
 
@@ -397,7 +397,7 @@ export default function CIRTable({
                     {/* Customer */}
                     <td className="p-3 max-w-[200px]">
                       <div className="font-bold text-slate-900 truncate" title={row.CUSTOMER_NAME}>
-                        {row.CUSTOMER_NAME || 'SPJ Account Party'}
+                        {row.CUSTOMER_NAME || 'ACTL Account Party'}
                       </div>
                     </td>
 

@@ -8,7 +8,7 @@ const PANVAYA_DIRECT_BASE = 'https://api.panvaya.com/api/v1';
 
 export function getPanvayaApiKey() {
   try {
-    return localStorage.getItem('spj_panvaya_key') || DEFAULT_PANVAYA_KEY;
+    return localStorage.getItem('actl_panvaya_key') || DEFAULT_PANVAYA_KEY;
   } catch (e) {
     return DEFAULT_PANVAYA_KEY;
   }
@@ -16,13 +16,13 @@ export function getPanvayaApiKey() {
 
 export function setPanvayaApiKey(key) {
   try {
-    localStorage.setItem('spj_panvaya_key', key?.trim() || DEFAULT_PANVAYA_KEY);
+    localStorage.setItem('actl_panvaya_key', key?.trim() || DEFAULT_PANVAYA_KEY);
   } catch (e) {}
 }
 
 const RENDER_BACKEND = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_URL)
   ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '')
-  : 'https://spj-backend.onrender.com';
+  : 'https://actlbackend.onrender.com';
 
 async function requestPanvaya(endpoint, options = {}) {
   const apiKey = getPanvayaApiKey();

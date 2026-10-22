@@ -46,7 +46,7 @@ export default function FleetView({
       const vehicles = fleetRes.data?.vehicles || [];
 
       const carriers = [
-        'SPJ Own Fleet (Vendor ID 0)',
+        'ACTL Own Fleet (Vendor ID 0)',
         'Transworld Logistics',
         'Allcargo Logistics',
         'Concor Multi-Modal',
@@ -145,7 +145,7 @@ export default function FleetView({
     const ws = XLSX.utils.json_to_sheet(filteredFleet);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Fleet_Operations');
-    XLSX.writeFile(wb, `SPJ_Fleet_Transport_${new Date().toISOString().slice(0, 10)}.xlsx`);
+    XLSX.writeFile(wb, `ACTL_Fleet_Transport_${new Date().toISOString().slice(0, 10)}.xlsx`);
   };
 
   const isFiltered = (selectedTerminal && selectedTerminal !== 'ALL') || (selectedFY && selectedFY !== 'ALL') || transporterFilter !== 'all' || !!search;
@@ -191,13 +191,13 @@ export default function FleetView({
               <div className="flex items-start justify-between gap-1">
                 <div className="min-w-0 flex-1">
                   <p className="text-[9px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider truncate">
-                    SPJ Own Fleet
+                    ACTL Own Fleet
                   </p>
                   <h3 className="text-sm sm:text-2xl font-black font-display text-emerald-800 mt-1 sm:mt-2 truncate">
                     <AnimatedCounter value={ownFleetCount} suffix=" Units" />
                   </h3>
                   <p className="text-[9px] sm:text-[11px] text-emerald-700 font-semibold mt-0.5 flex items-center gap-1 truncate">
-                    <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0" /> SPJ Dedicated
+                    <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0" /> ACTL Dedicated
                   </p>
                 </div>
                 <div className="p-1.5 sm:p-3 rounded-lg sm:rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-200 shadow-xs shrink-0">

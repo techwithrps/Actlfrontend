@@ -97,12 +97,12 @@ export default function FilterBar({
     if (selectedCompany && selectedCompany !== 'ALL' && selectedCompany !== 'all') {
       const s = String(selectedCompany).toUpperCase().trim();
       let compId = '3';
-      if (s === '2' || s === 'SPJ') compId = '2';
+      if (s === '2' || s === 'ACTL' || s === 'SPJ') compId = '2';
       else if (s === '1' || s === 'SJ') compId = '1';
       else if (s === '5' || s === 'PJ') compId = '5';
-      else if (s === '4' || s === 'SPJ-MUM' || s.includes('MUM')) compId = '4';
+      else if (s === '4' || s === 'ACTL-MUM' || s === 'SPJ-MUM' || s.includes('MUM')) compId = '4';
 
-      const compNames = { '3': 'PJ-OLD', '2': 'SPJ', '1': 'SJ', '5': 'PJ', '4': 'SPJ-MUM' };
+      const compNames = { '3': 'PJ-OLD', '2': 'ACTL', '1': 'SJ', '5': 'PJ', '4': 'ACTL-MUM' };
       compLabel = `All Customers in ${compNames[compId] || selectedCompany}`;
 
       const rawCompCusts = (companyCustomers && companyCustomers[compId]) || 
@@ -120,7 +120,7 @@ export default function FilterBar({
     if (records && records.length > 0) {
       records.forEach(r => {
         const cId = r.CUSTOMER_ID || r.CUSTOMER_NAME;
-        const cName = r.CUSTOMER_NAME || 'SPJ Account Party';
+        const cName = r.CUSTOMER_NAME || 'ACTL Account Party';
         const rev = Number(r.AMOUNT) || Number(r.BILL_AMOUNT) || 0;
 
         if (!custMap[cId]) {

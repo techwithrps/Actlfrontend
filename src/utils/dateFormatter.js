@@ -1,5 +1,5 @@
 /**
- * SPJ Date Formatting Utility
+ * ACTL Date Formatting Utility
  * Standardizes all date inputs to DD/MM/YYYY Indian ERP format.
  */
 

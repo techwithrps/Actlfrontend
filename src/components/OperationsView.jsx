@@ -286,10 +286,10 @@ export default function OperationsView({
                 ) : (
                   gateInsList.map((row, idx) => (
                     <tr key={idx} className="hover:bg-slate-50 transition-colors">
-                      <td className="p-3.5 font-bold text-[#2b1f55] font-mono">{row.REFERENCE_NO || `SPJ-${row.CARGO_GATE_IN_ID}`}</td>
+                      <td className="p-3.5 font-bold text-[#2b1f55] font-mono">{row.REFERENCE_NO || `ACTL-${row.CARGO_GATE_IN_ID}`}</td>
                       <td className="p-3.5 font-mono text-orange-600 font-bold">{row.TRUCK_NO || '-'}</td>
                       <td className="p-3.5 text-slate-900 font-medium">{row.DRIVER && row.DRIVER !== 'NA' ? row.DRIVER : 'Assigned Driver'}</td>
-                      <td className="p-3.5 text-slate-700">{row.TRANSPORTER_NAME || 'SPJ Logistics Fleet'}</td>
+                      <td className="p-3.5 text-slate-700">{row.TRANSPORTER_NAME || 'ACTL Logistics Fleet'}</td>
                       <td className="p-3.5 text-slate-500 font-mono text-xs">{row.GATE_IN_DATE || '-'}</td>
                       <td className="p-3.5 font-mono text-blue-700 font-bold">{row.CONT_NO && row.CONT_NO !== '-' ? row.CONT_NO : 'Bulk / Palletized'}</td>
                       <td className="p-3.5 font-mono text-slate-600">{row.SEAL_NO && row.SEAL_NO !== '-' ? row.SEAL_NO : 'Custom Tagged'}</td>
@@ -370,7 +370,7 @@ export default function OperationsView({
                       <td className="p-3.5 font-mono text-slate-500">{row.VEHICLE_ID}</td>
                       <td className="p-3.5 font-mono text-orange-600 font-bold">{row.TRUCK_NO || '-'}</td>
                       <td className="p-3.5 text-slate-900 font-medium">{row.DRIVER_NAME && row.DRIVER_NAME !== '-' ? row.DRIVER_NAME : 'Authorized Driver'}</td>
-                      <td className="p-3.5 text-slate-700">{row.TRANSPORTER_NAME || 'SPJ Logistics'}</td>
+                      <td className="p-3.5 text-slate-700">{row.TRANSPORTER_NAME || 'ACTL Logistics'}</td>
                       <td className="p-3.5 font-mono text-blue-700 font-bold">{row.CONT_NO && row.CONT_NO !== '-' ? row.CONT_NO : 'Bulk Cargo'}</td>
                       <td className="p-3.5 font-mono text-slate-600">{row.SEAL_NO && row.SEAL_NO !== '-' ? row.SEAL_NO : 'Gate Checked'}</td>
                       <td className="p-3.5 text-slate-500 font-mono text-xs">{row.GATE_OUT_DATE || '-'}</td>
@@ -444,7 +444,7 @@ export default function OperationsView({
                       <td className="p-3.5 font-bold text-[#2b1f55] font-mono">{row.ASN_NO || `ASN-${row.ASN_ID}`}</td>
                       <td className="p-3.5 text-slate-500 font-mono">{row.ASN_DATE || '-'}</td>
                       <td className="p-3.5 font-mono text-orange-600 font-bold">{row.TRUCK_NO || '-'}</td>
-                      <td className="p-3.5 text-slate-900 font-semibold">{row.SUPPLIER_NAME || 'SPJ Key Account'}</td>
+                      <td className="p-3.5 text-slate-900 font-semibold">{row.SUPPLIER_NAME || 'ACTL Key Account'}</td>
                     </tr>
                   ))
                 )}

@@ -53,8 +53,8 @@ export default function LoginPage({ onLoginSuccess }) {
 
       if (res.ok && data.success && data.token) {
         if (rememberMe) {
-          localStorage.setItem('spj_auth_token', data.token);
-          localStorage.setItem('spj_auth_user', JSON.stringify(data.user));
+          localStorage.setItem('actl_auth_token', data.token);
+          localStorage.setItem('actl_auth_user', JSON.stringify(data.user));
         }
         setLoading(false);
         onLoginSuccess(data.user, data.token);
